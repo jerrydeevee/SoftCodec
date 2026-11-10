@@ -1,0 +1,14 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SoftCodec.Core -> /workspace/work/SoftCodec/src/SoftCodec.Core/bin/Release/net9.0/SoftCodec.Core.dll
+  SoftCodec.Rtp -> /workspace/work/SoftCodec/src/SoftCodec.Rtp/bin/Release/net9.0/SoftCodec.Rtp.dll
+  SoftCodec.Audio -> /workspace/work/SoftCodec/src/SoftCodec.Audio/bin/Release/net9.0/SoftCodec.Audio.dll
+  SoftCodec.Sip -> /workspace/work/SoftCodec/src/SoftCodec.Sip/bin/Release/net9.0/SoftCodec.Sip.dll
+  SoftCodec.Tests -> /workspace/work/SoftCodec/tests/SoftCodec.Tests/bin/Release/net9.0/SoftCodec.Tests.dll
+Test run for /workspace/work/SoftCodec/tests/SoftCodec.Tests/bin/Release/net9.0/SoftCodec.Tests.dll (.NETCoreApp,Version=v9.0)
+A total of 1 test files matched the specified pattern.
+WARNING: Overwriting results file: /workspace/work/SoftCodec/tests/SoftCodec.Tests/TestResults/SoftCodec.trx
+Results File: /workspace/work/SoftCodec/tests/SoftCodec.Tests/TestResults/SoftCodec.trx
+
+Passed!  - Failed:     0, Passed:    60, Skipped:     0, Total:    60, Duration: 1 m 4 s - SoftCodec.Tests.dll (net9.0)
+VSTEST_ARTIFACTS_DIRECTORY environment variable was not found, falling back to a user-private temporary directory. This is most likely caused by an outdated Microsoft.NET.Test.Sdk package reference in the test project.

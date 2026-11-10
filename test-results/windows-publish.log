@@ -1,0 +1,13 @@
+  Determining projects to restore...
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Rtp/SoftCodec.Rtp.csproj (in 237 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Core/SoftCodec.Core.csproj (in 8 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Sip/SoftCodec.Sip.csproj (in 668 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Audio/SoftCodec.Audio.csproj (in 282 ms).
+  2 of 6 projects are up-to-date for restore.
+  SoftCodec.Core -> /workspace/work/SoftCodec/src/SoftCodec.Core/bin/Release/net9.0/SoftCodec.Core.dll
+  SoftCodec.Rtp -> /workspace/work/SoftCodec/src/SoftCodec.Rtp/bin/Release/net9.0/SoftCodec.Rtp.dll
+  SoftCodec.Audio -> /workspace/work/SoftCodec/src/SoftCodec.Audio/bin/Release/net9.0/SoftCodec.Audio.dll
+  SoftCodec.Windows -> /workspace/work/SoftCodec/src/SoftCodec.Windows/bin/Release/net9.0-windows/SoftCodec.Windows.dll
+  SoftCodec.Sip -> /workspace/work/SoftCodec/src/SoftCodec.Sip/bin/Release/net9.0/SoftCodec.Sip.dll
+  SoftCodec.App -> /workspace/work/SoftCodec/src/SoftCodec.App/bin/Release/net9.0-windows/win-x64/SoftCodec.App.dll
+  SoftCodec.App -> /workspace/work/SoftCodec/artifacts/publish/

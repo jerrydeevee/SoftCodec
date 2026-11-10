@@ -1,0 +1,5 @@
+<Project><PropertyGroup><ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally></PropertyGroup><ItemGroup><PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.11"/><PackageVersion Include="Serilog" Version="4.4.0"/><PackageVersion Include="Serilog.Sinks.File" Version="7.0.0"/>
+<PackageVersion Include="SIPSorcery" Version="10.0.17"/><PackageVersion Include="NAudio" Version="3.3.0"/><PackageVersion Include="Concentus" Version="2.2.2"/><PackageVersion Include="Concentus.Native.NetCore" Version="1.5.2"/><PackageVersion Include="Concentus.Native" Version="1.5.2"/>
+<PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2"/><PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="9.0.11"/>
+<PackageVersion Include="xunit" Version="2.9.3"/><PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5"/><PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1"/>
+</ItemGroup></Project>

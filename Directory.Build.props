@@ -1,0 +1,1 @@
+<Project><PropertyGroup><TargetFramework>net9.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableWindowsTargeting>true</EnableWindowsTargeting><RestorePackagesWithLockFile>true</RestorePackagesWithLockFile></PropertyGroup></Project>
