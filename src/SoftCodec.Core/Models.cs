@@ -17,6 +17,10 @@ public sealed record MediaMetrics
  public double BitrateUpKbps { get; init; }
  public double? RttMs { get; init; }
  public double DriftPpm { get; init; }
+ public double LevelRemoteLeftDbfs {get;init;}=-96;
+ public double LevelRemoteRightDbfs {get;init;}=-96;
+ public double LevelReturnLeftDbfs {get;init;}=-96;
+ public double LevelReturnRightDbfs {get;init;}=-96;
  public double LevelRemoteDbfs { get; init; } = -96;
  public double LevelReturnDbfs { get; init; } = -96;
  public double EstimatedOneWayMs { get; init; }

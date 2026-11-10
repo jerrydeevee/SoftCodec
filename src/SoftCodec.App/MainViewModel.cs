@@ -26,6 +26,11 @@ public partial class MainViewModel : ObservableObject,IAsyncDisposable
  [ObservableProperty] private string metrics="Nog geen media ontvangen";
  [ObservableProperty] private string target="sip:";
  [ObservableProperty] private string logFilter="";
+ [ObservableProperty] private double remoteLeft=-96;
+ [ObservableProperty] private double remoteRight=-96;
+ [ObservableProperty] private double returnLeft=-96;
+ [ObservableProperty] private double returnRight=-96;
+ [ObservableProperty] private bool connected;
  [ObservableProperty] private double remoteLevel;
  [ObservableProperty] private double returnLevel;
  [ObservableProperty] private string remoteDb="−96 dBFS";
@@ -56,7 +61,7 @@ public partial class MainViewModel : ObservableObject,IAsyncDisposable
  {
   Status=host.State switch{CallState.Idle=>Running?"WACHTEN OP GESPREK":"GESTOPT",CallState.Incoming=>"INKOMENDE REPORTAGE",CallState.Outgoing=>"UITBELLEN",CallState.Establishing=>"VERBINDING OPBOUWEN",CallState.Connected=>"VERBONDEN",CallState.Disconnecting=>"AFSLUITEN",_=>"FOUT"};
   RemoteName=host.ActiveCall?.RemoteDisplay??"Klaar voor een reportage";Codec=host.ActiveCall?.NegotiatedCodec??"Geen actieve verbinding";Duration=host.ActiveCall is {ConnectedAt:var at}&&at!=DateTimeOffset.MinValue?(DateTimeOffset.Now-at).ToString(@"hh\:mm\:ss"):"00:00:00";
-  var m=host.Metrics;RemoteLevel=Math.Clamp(m.LevelRemoteDbfs+60,0,60);ReturnLevel=Math.Clamp(m.LevelReturnDbfs+60,0,60);RemoteDb=$"{m.LevelRemoteDbfs:F1} dBFS";ReturnDb=$"{m.LevelReturnDbfs:F1} dBFS";
+  var m=host.Metrics;RemoteLeft=m.LevelRemoteLeftDbfs;RemoteRight=m.LevelRemoteRightDbfs;ReturnLeft=m.LevelReturnLeftDbfs;ReturnRight=m.LevelReturnRightDbfs;Connected=host.State==CallState.Connected;RemoteLevel=Math.Clamp(m.LevelRemoteDbfs+60,0,60);ReturnLevel=Math.Clamp(m.LevelReturnDbfs+60,0,60);RemoteDb=$"{m.LevelRemoteDbfs:F1} dBFS";ReturnDb=$"{m.LevelReturnDbfs:F1} dBFS";
   Metrics=$"Buffer {m.BufferDepthMs:F0} / {m.TargetBufferMs:F0} ms    ·    Loss {m.PacketLossPercent:F2}%    ·    Jitter {m.JitterMs:F1} ms    ·    RTT {(m.RttMs is {} r?$"{r:F0} ms":"—")}\nRX {m.PacketsReceived}    TX {m.PacketsSent}    Late {m.PacketsLate}    ·    {m.BitrateDownKbps:F0} / {m.BitrateUpKbps:F0} kbit/s    ·    Drift {devices.DriftPpm:+0;-0;0} ppm";
   history.Enqueue(m.BufferDepthMs);while(history.Count>600)history.Dequeue();BufferPoints=new(history.Select((v,i)=>new System.Windows.Point(i*900d/600,90-Math.Min(90,v*.2))));
   Listener=$"sip:studio@{(options.Identity.AdvertisedIp.Length>0?options.Identity.AdvertisedIp:"lokaal adres")}  ·  UDP {options.Sip.Port} / {options.Rtp.Port} / {options.Rtp.RtcpPort}";

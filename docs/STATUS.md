@@ -31,7 +31,7 @@ Datum: 10 november 2026. Versie: 0.1.0, ontwikkel- en testbuild.
 | Audioallocaties / opname | Opnamequeue kopieert PCM-blokken en heeft per-blok allocaties. GC, diskstall, renderunderruns en performance met echte apparaten meten en verbeteren voor productie. |
 | Opnamebestanden | Klassiek RIFF/WAV stopt met fout vóór 4 GB. Bestandsrotatie/RF64 en crashbestendige tussentijdse headers ontbreken. Opname aan/uit wordt nu vóór het gesprek ingesteld; geen live recordknop. |
 | Profielen | Basisscherm en codeconderhandeling aanwezig. Geavanceerde jitter-/Opus-overrides zijn model/API-velden, niet alle zijn bewerkbaar via het profielscherm. |
-| Meters | RMS-meters per stroom; nog geen afzonderlijke L/R-peak-holdmeters of gekalibreerde VU-ballistics. |
+| Meters | Afzonderlijke L/R-RMS-meters op een hardwareachtig frontpaneel; peak-hold en gekalibreerde VU-ballistics ontbreken nog. |
 | Alarmacties | Visueel en log. Configureerbare akoestische alarmacties en webhook ontbreken. |
 | Diagnose | ZIP met recente logs en configuratie, zonder secretdirectory. Adressen, namen en bestemmingen staan wel in het pakket; controleer vóór delen. Uitgebreide automatische anonimisering ontbreekt. |
 | Session timers | RFC 4028 niet geïmplementeerd; niet-nul configuratie wordt expliciet afgewezen. Normale gesprekken zonder session timers werken. |

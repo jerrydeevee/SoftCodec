@@ -2,9 +2,10 @@
 
 - Omgeving: Linux x64, .NET SDK 9.0.321 / runtime 9.0.23.
 - De volledige solution en WPF-app zijn succesvol gecompileerd; geen compilerwaarschuwingen of fouten.
-- 60 tests geslaagd, 0 mislukt, 0 overgeslagen in de volledige Release-run.
+- 62 tests geslaagd, 0 mislukt, 0 overgeslagen in de volledige Release-run.
 - Losse 60-seconden verbindingstest met echte lokale SIP/RTP/RTCP-sockets en gesimuleerde geluidskaarten geslaagd; audio bleef doorlopen, RTT uit RTCP beschikbaar.
 - Zes codecvarianten op twee hosts: Opus, G.722, PCMA, PCMU, L16 en L24; signaal in beide richtingen, poorten vrij na ophangen.
+- Afzonderlijke stereo-RMS-meting getest met signaal alleen links en stilte rechts; kanaaltoewijzing en lege buffers gecontroleerd.
 - Re-INVITE Opus → PCMA: oorspronkelijke codec bleef actief vóór ACK, nieuwe codec pas daarna.
 - Digest-authenticatie met echte SIP-challenge, replaycontrole en brongebonden nonce.
 - Handmatig opnemen en weigeren getest; audioapparaten openen pas bij beantwoorden.

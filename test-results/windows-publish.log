@@ -1,9 +1,10 @@
   Determining projects to restore...
-  Restored /workspace/work/SoftCodec/src/SoftCodec.Rtp/SoftCodec.Rtp.csproj (in 237 ms).
-  Restored /workspace/work/SoftCodec/src/SoftCodec.Core/SoftCodec.Core.csproj (in 8 ms).
-  Restored /workspace/work/SoftCodec/src/SoftCodec.Sip/SoftCodec.Sip.csproj (in 668 ms).
-  Restored /workspace/work/SoftCodec/src/SoftCodec.Audio/SoftCodec.Audio.csproj (in 282 ms).
-  2 of 6 projects are up-to-date for restore.
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Core/SoftCodec.Core.csproj (in 2.35 sec).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Audio/SoftCodec.Audio.csproj (in 536 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Windows/SoftCodec.Windows.csproj (in 172 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.App/SoftCodec.App.csproj (in 3.53 sec).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Rtp/SoftCodec.Rtp.csproj (in 67 ms).
+  Restored /workspace/work/SoftCodec/src/SoftCodec.Sip/SoftCodec.Sip.csproj (in 496 ms).
   SoftCodec.Core -> /workspace/work/SoftCodec/src/SoftCodec.Core/bin/Release/net9.0/SoftCodec.Core.dll
   SoftCodec.Rtp -> /workspace/work/SoftCodec/src/SoftCodec.Rtp/bin/Release/net9.0/SoftCodec.Rtp.dll
   SoftCodec.Audio -> /workspace/work/SoftCodec/src/SoftCodec.Audio/bin/Release/net9.0/SoftCodec.Audio.dll

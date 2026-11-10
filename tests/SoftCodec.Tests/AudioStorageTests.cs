@@ -11,6 +11,18 @@ public class AudioStorageTests
  }
  [Theory][InlineData("L16",.00004)][InlineData("L24",.000001)]
  public void LinearPcmPreservesNegativeAndClips(string name,double tolerance){using var codec=new LinearPcmCodec(new(name,96,48000,48000,1,20));float[] samples=[-1,-.5f,0,.5f,1];var bytes=new byte[100];var decoded=new float[5];int n=codec.Encode(samples,bytes);codec.Decode(bytes.AsSpan(0,n),decoded);for(int i=0;i<5;i++)Assert.InRange(Math.Abs(samples[i]-decoded[i]),0,tolerance);}
+ [Fact]public void StereoLevelsMeasureEachChannelIndependently()
+ {
+  float[] samples=[.5f,0,.5f,0,.5f,0,.5f,0];
+  Assert.InRange(AudioLevel.ChannelDbfs(samples,2,0),-6.03,-6.01);
+  Assert.Equal(-96,AudioLevel.ChannelDbfs(samples,2,1));
+  Assert.Equal(-96,AudioLevel.ChannelDbfs(ReadOnlySpan<float>.Empty,2,0));
+ }
+ [Fact]public void StereoLevelsRejectInvalidChannelMapping()
+ {
+  Assert.Throws<ArgumentException>(()=>AudioLevel.ChannelDbfs(new float[4],2,2));
+  Assert.Throws<ArgumentException>(()=>AudioLevel.ChannelDbfs(new float[3],2,0));
+ }
  [Fact]public void G711KnownSilenceVectors(){Assert.Equal(0,G711Codec.DecodeMu(0xff));Assert.Equal(0xff,G711Codec.EncodeMu(0));Assert.Equal(8,G711Codec.DecodeA(0xd5));Assert.Equal(0xd5,G711Codec.EncodeA(0));}
  [Fact]public void ResamplerPreservesStreamingDuration(){using var r=new StreamingResampler(2,48000,16000);var source=new float[1920];var destination=new float[3000];int total=0;for(int i=0;i<100;i++)total+=r.Process(source,destination);Assert.InRange(total,63000,65000);}
  [Fact]public void ResamplerAcceptsDriftCorrection(){using var r=new StreamingResampler(2,48000,48000);var source=new float[1920];var destination=new float[3000];int total=0;for(int i=0;i<100;i++)total+=r.Process(source,destination,1.0003);Assert.InRange(total,190000,192100);}

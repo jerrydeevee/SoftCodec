@@ -83,11 +83,13 @@ Inventaris van de daadwerkelijk herstelde NuGet-pakketten. Lees de originele lic
 | System.Linq | 4.3.0 | Zie upstream |
 | System.Memory | 4.5.4 | Zie upstream |
 | System.Net.Http | 4.3.0 | Zie upstream |
+| System.Net.NameResolution | 4.3.0 | Zie upstream |
 | System.Net.Primitives | 4.3.0 | Zie upstream |
 | System.Net.Sockets | 4.3.0 | Zie upstream |
 | System.Numerics.Tensors | 9.0.0 | MIT |
 | System.Numerics.Vectors | 4.5.0 | Zie upstream |
 | System.ObjectModel | 4.3.0 | Zie upstream |
+| System.Private.Uri | 4.3.0 | Zie upstream |
 | System.Reflection.Emit.ILGeneration | 4.3.0 | Zie upstream |
 | System.Reflection.Emit.Lightweight | 4.3.0 | Zie upstream |
 | System.Reflection.Emit | 4.3.0 | Zie upstream |
@@ -102,6 +104,7 @@ Inventaris van de daadwerkelijk herstelde NuGet-pakketten. Lees de originele lic
 | System.Runtime.InteropServices | 4.3.0 | Zie upstream |
 | System.Runtime.Numerics | 4.3.0 | Zie upstream |
 | System.Runtime | 4.3.0 | Zie upstream |
+| System.Security.Claims | 4.3.0 | Zie upstream |
 | System.Security.Cryptography.Algorithms | 4.3.0 | Zie upstream |
 | System.Security.Cryptography.Cng | 4.3.0 | Zie upstream |
 | System.Security.Cryptography.Csp | 4.3.0 | Zie upstream |
@@ -110,9 +113,12 @@ Inventaris van de daadwerkelijk herstelde NuGet-pakketten. Lees de originele lic
 | System.Security.Cryptography.Primitives | 4.3.0 | Zie upstream |
 | System.Security.Cryptography.ProtectedData | 9.0.11 | MIT |
 | System.Security.Cryptography.X509Certificates | 4.3.0 | Zie upstream |
+| System.Security.Principal.Windows | 4.3.0 | Zie upstream |
+| System.Security.Principal | 4.3.0 | Zie upstream |
 | System.Text.Encoding.Extensions | 4.3.0 | Zie upstream |
 | System.Text.Encoding | 4.3.0 | Zie upstream |
 | System.Text.RegularExpressions | 4.3.0 | Zie upstream |
+| System.Threading.Overlapped | 4.3.0 | Zie upstream |
 | System.Threading.Tasks.Extensions | 4.3.0 | Zie upstream |
 | System.Threading.Tasks | 4.3.0 | Zie upstream |
 | System.Threading.Timer | 4.3.0 | Zie upstream |
@@ -120,6 +126,23 @@ Inventaris van de daadwerkelijk herstelde NuGet-pakketten. Lees de originele lic
 | System.Xml.ReaderWriter | 4.3.0 | Zie upstream |
 | System.Xml.XDocument | 4.3.0 | Zie upstream |
 | Tmds.LibC | 0.2.0 | MIT |
+| runtime.any.System.Collections | 4.3.0 | Zie upstream |
+| runtime.any.System.Diagnostics.Tools | 4.3.0 | Zie upstream |
+| runtime.any.System.Diagnostics.Tracing | 4.3.0 | Zie upstream |
+| runtime.any.System.Globalization.Calendars | 4.3.0 | Zie upstream |
+| runtime.any.System.Globalization | 4.3.0 | Zie upstream |
+| runtime.any.System.IO | 4.3.0 | Zie upstream |
+| runtime.any.System.Reflection.Extensions | 4.3.0 | Zie upstream |
+| runtime.any.System.Reflection.Primitives | 4.3.0 | Zie upstream |
+| runtime.any.System.Reflection | 4.3.0 | Zie upstream |
+| runtime.any.System.Resources.ResourceManager | 4.3.0 | Zie upstream |
+| runtime.any.System.Runtime.Handles | 4.3.0 | Zie upstream |
+| runtime.any.System.Runtime.InteropServices | 4.3.0 | Zie upstream |
+| runtime.any.System.Runtime | 4.3.0 | Zie upstream |
+| runtime.any.System.Text.Encoding.Extensions | 4.3.0 | Zie upstream |
+| runtime.any.System.Text.Encoding | 4.3.0 | Zie upstream |
+| runtime.any.System.Threading.Tasks | 4.3.0 | Zie upstream |
+| runtime.any.System.Threading.Timer | 4.3.0 | Zie upstream |
 | runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
 | runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
 | runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
@@ -136,3 +159,10 @@ Inventaris van de daadwerkelijk herstelde NuGet-pakketten. Lees de originele lic
 | runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
 | runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
 | runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl | 4.3.0 | Zie upstream |
+| runtime.win.Microsoft.Win32.Primitives | 4.3.0 | Zie upstream |
+| runtime.win.System.Console | 4.3.0 | Zie upstream |
+| runtime.win.System.Diagnostics.Debug | 4.3.0 | Zie upstream |
+| runtime.win.System.IO.FileSystem | 4.3.0 | Zie upstream |
+| runtime.win.System.Net.Primitives | 4.3.0 | Zie upstream |
+| runtime.win.System.Net.Sockets | 4.3.0 | Zie upstream |
+| runtime.win.System.Runtime.Extensions | 4.3.0 | Zie upstream |

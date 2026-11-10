@@ -10,7 +10,7 @@ public sealed class MediaEngine : IAsyncDisposable
  readonly SoftCodecOptions options;readonly IAudioDevices devices;readonly EventLog log;readonly Socket rtp,rtcp;readonly CancellationTokenSource stop=new();
  Task[] tasks=[];CodecFormat? format;IAudioCodec? codec;AdaptiveJitterBuffer? jitter;RtpReceptionStatistics? stats;
  IPEndPoint? remote,remoteControl;IPAddress? signalingAddress;uint? remoteSsrc;uint localSsrc=RandomUInt(),timestamp=RandomUInt();ushort sequence=(ushort)RandomUInt();
- long bytesRx,bytesTx,packetsTx,lastMedia,lastRtcp,startedAt,silenceAt;uint lastSr;long lastSrAt;double? rtt;double rxLevel=-96,txLevel=-96;int disposed;
+ long bytesRx,bytesTx,packetsTx,lastMedia,lastRtcp,startedAt,silenceAt;uint lastSr;long lastSrAt;double? rtt;double rxLevel=-96,txLevel=-96,rxLeft=-96,rxRight=-96,txLeft=-96,txRight=-96;int disposed;
  WavRecorder? recording,returnRecording;StreamingResampler? rxResampler,txResampler;
  public event Action<string>? Faulted;public event Action<Alarm>? AlarmRaised;
  public bool IsStarted=>tasks.Length!=0;
@@ -70,8 +70,8 @@ public sealed class MediaEngine : IAsyncDisposable
    // Avoid an unbounded burst of stale media after suspend or a scheduling stall.
    if(Stopwatch.GetTimestamp()-due>frameTicks*3)due=Stopwatch.GetTimestamp();
    long now=Environment.TickCount64;var status=jitter!.TakeDue(now,packet,out int packetBytes);
-   if(status!=PacketStatus.Waiting){bool fec=status==PacketStatus.RecoverFec&&f.Name=="OPUS"&&options.Codecs.Opus.UseInBandFec;int n=codec!.Decode(packet.AsSpan(0,status==PacketStatus.RecoverFec&&!fec?0:packetBytes),decoded,fec);int output=rxResampler!.Process(decoded.AsSpan(0,n),render);rxLevel=AudioLevel.Dbfs(render.AsSpan(0,output));devices.Write(render.AsSpan(0,output),f.Channels,48000);recording?.Write(render.AsSpan(0,output));}
-   var samples=capture.AsSpan(0,deviceSamples);devices.Read(samples,f.Channels,48000);if(Muted)samples.Clear();txLevel=AudioLevel.Dbfs(samples);returnRecording?.Write(samples);
+   if(status!=PacketStatus.Waiting){bool fec=status==PacketStatus.RecoverFec&&f.Name=="OPUS"&&options.Codecs.Opus.UseInBandFec;int n=codec!.Decode(packet.AsSpan(0,status==PacketStatus.RecoverFec&&!fec?0:packetBytes),decoded,fec);int output=rxResampler!.Process(decoded.AsSpan(0,n),render);rxLevel=AudioLevel.Dbfs(render.AsSpan(0,output));rxLeft=AudioLevel.ChannelDbfs(render.AsSpan(0,output),f.Channels,0);rxRight=AudioLevel.ChannelDbfs(render.AsSpan(0,output),f.Channels,f.Channels-1);devices.Write(render.AsSpan(0,output),f.Channels,48000);recording?.Write(render.AsSpan(0,output));}
+   var samples=capture.AsSpan(0,deviceSamples);devices.Read(samples,f.Channels,48000);if(Muted)samples.Clear();txLevel=AudioLevel.Dbfs(samples);txLeft=AudioLevel.ChannelDbfs(samples,f.Channels,0);txRight=AudioLevel.ChannelDbfs(samples,f.Channels,f.Channels-1);returnRecording?.Write(samples);
    int converted=txResampler!.Process(samples,txPcm);captureRing.Write(txPcm.AsSpan(0,converted));
    int needed=f.FrameSamples*f.Channels;if(captureRing.Count>=needed){captureRing.Read(txPcm.AsSpan(0,needed));int count=codec!.Encode(txPcm.AsSpan(0,needed),encoded);var h=new RtpHeader(sequence++,timestamp,localSsrc,(byte)f.PayloadType,packetsTx==0);int size=RtpPacket.Write(packet,h,encoded.AsSpan(0,count));rtp.SendTo(packet.AsSpan(0,size),SocketFlags.None,remote!);timestamp=unchecked(timestamp+(uint)f.TimestampStep);Interlocked.Increment(ref packetsTx);Interlocked.Add(ref bytesTx,count);}
    if(now-lastRtcp>5000){SendReport(report,now);lastRtcp=now;}
@@ -89,7 +89,7 @@ public sealed class MediaEngine : IAsyncDisposable
  void Fail(string message){log.Write("ERR",message);stop.Cancel();Faulted?.Invoke(message);}
  public MediaMetrics Metrics
  {
-  get{if(stats is null)return new();lock(stats){double seconds=Math.Max(.1,(Environment.TickCount64-startedAt)/1000d);return new(){PacketsReceived=stats.Received,PacketsLost=stats.Lost,PacketsSent=Interlocked.Read(ref packetsTx),PacketLossPercent=stats.Expected==0?0:stats.Lost*100d/stats.Expected,JitterMs=stats.JitterMs,BufferDepthMs=jitter!.DepthMs,TargetBufferMs=jitter.TargetMs,PacketsLate=jitter.Late,PacketsDiscarded=jitter.Discarded,BitrateDownKbps=bytesRx*8/seconds/1000,BitrateUpKbps=bytesTx*8/seconds/1000,RttMs=rtt,LevelRemoteDbfs=rxLevel,LevelReturnDbfs=txLevel,EstimatedOneWayMs=jitter.TargetMs+format!.PtimeMs+options.Audio.RequestedLatencyMs+(rtt??0)/2};}}
+  get{if(stats is null)return new();lock(stats){double seconds=Math.Max(.1,(Environment.TickCount64-startedAt)/1000d);return new(){PacketsReceived=stats.Received,PacketsLost=stats.Lost,PacketsSent=Interlocked.Read(ref packetsTx),PacketLossPercent=stats.Expected==0?0:stats.Lost*100d/stats.Expected,JitterMs=stats.JitterMs,BufferDepthMs=jitter!.DepthMs,TargetBufferMs=jitter.TargetMs,PacketsLate=jitter.Late,PacketsDiscarded=jitter.Discarded,BitrateDownKbps=bytesRx*8/seconds/1000,BitrateUpKbps=bytesTx*8/seconds/1000,RttMs=rtt,LevelRemoteLeftDbfs=rxLeft,LevelRemoteRightDbfs=rxRight,LevelReturnLeftDbfs=txLeft,LevelReturnRightDbfs=txRight,LevelRemoteDbfs=rxLevel,LevelReturnDbfs=txLevel,EstimatedOneWayMs=jitter.TargetMs+format!.PtimeMs+options.Audio.RequestedLatencyMs+(rtt??0)/2};}}
  }
  public async ValueTask DisposeAsync()
  {

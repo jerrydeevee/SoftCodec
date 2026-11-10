@@ -26,5 +26,11 @@ public sealed class StreamingResampler : IDisposable
 }
 public static class AudioLevel
 {
+ public static double ChannelDbfs(ReadOnlySpan<float> samples,int channels,int channel)
+ {
+  if(channels<1||channel<0||channel>=channels||samples.Length%channels!=0)throw new ArgumentException("Ongeldig kanaalformaat.");
+  double sum=0;int count=samples.Length/channels;for(int i=channel;i<samples.Length;i+=channels)sum+=samples[i]*samples[i];
+  return count==0?-96:Math.Max(-96,10*Math.Log10(Math.Max(1e-12,sum/count)));
+ }
  public static double Dbfs(ReadOnlySpan<float> samples){double sum=0;foreach(float f in samples)sum+=f*f;return samples.Length==0?-96:Math.Max(-96,10*Math.Log10(Math.Max(1e-12,sum/samples.Length)));}
 }

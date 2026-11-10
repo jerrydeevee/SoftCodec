@@ -1,6 +1,6 @@
 # SoftCodec — ontwikkel- en testbuild 0.1.0
 
-Windows x64-studiocodec voor Radio Aa en Hunze. Ontwikkeld vanuit `ONTWERP.md`.
+Windows x64-studiocodec voor Radio Aa en Hunze. Het hoofdscherm heeft een hardwareachtig codecfront met een verdiept statusdisplay, afzonderlijke L/R-meters en grote gespreksknoppen. Ontwikkeld vanuit `ONTWERP.md`.
 
 **Dit is een testbuild, geen vrijgegeven studioproduct.** De protocolkern is automatisch getest met echte lokale UDP-verbindingen. Deze Linux-bouwomgeving heeft geen Windows-geluidskaart of Comrex; WASAPI, UI-bediening, WAN/NAT en interoperabiliteit zijn nog niet op de doelhardware geverifieerd. Zie `docs/STATUS.md` voor de concrete grenzen.
 
