@@ -33,7 +33,7 @@ dotnet test tests/SoftCodec.Tests/SoftCodec.Tests.csproj -c Release
 
 `build.ps1` plaatst een self-contained Windows x64-build in `artifacts/publish`. Voor een klassieke installer: installeer Inno Setup 6, zet `ISCC.exe` op PATH en voer `./build.ps1 -Installer` uit. De installerbron staat in `installer/SoftCodec.iss`. De installer is in de cloudomgeving niet gecompileerd of uitgevoerd.
 
-De meegeleverde GitHub Actions-workflow is broncode en is niet naar GitHub geüpload of daar uitgevoerd.
+De GitHub Actions-workflow voert de protocoltests op Linux uit en maakt een Windows x64-build. Bekijk de actuele resultaten onder **Actions**. Open een geslaagde run en download het artefact **SoftCodec-win-x64**; pak de volledige map uit en start `SoftCodec.App.exe`.
 
 ## Firewall en automatisch starten
 
